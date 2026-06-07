@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emanuele Casali</title>
+  <meta name="description" content="Emanuele Casali — Operator, Builder, General Manager. AI-assisted research and decision workflows." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+           background: #0d1117; color: #c9d1d9; line-height: 1.65;
+           -webkit-font-smoothing: antialiased; }
+    a { color: #2dd4bf; text-decoration: none; }
+    a:hover { color: #5eead4; text-decoration: underline; }
+    p { color: #8b949e; max-width: 68ch; }
+    h1,h2,h3 { color: #f0f6fc; line-height: 1.1; }
+    ul { padding-left: 1.1rem; color: #8b949e; }
+    li + li { margin-top: .45rem; }
+
+    /* Layout */
+    .wrap { width: min(100% - 2rem, 1060px); margin-inline: auto; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 10;
+           background: rgba(13,17,23,.92); backdrop-filter: blur(12px);
+           border-bottom: 1px solid #21262d; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between;
+                 gap: 1rem; min-height: 3.75rem; }
+    .nav-brand { display: flex; align-items: center; gap: .75rem; color: #f0f6fc;
+                 font-weight: 700; font-size: .85rem; letter-spacing: .1em;
+                 text-transform: uppercase; }
+    .brand-mark { width: 2rem; height: 2rem; border-radius: .45rem;
+                  background: linear-gradient(135deg,#2dd4bf,#3b82f6);
+                  display: grid; place-items: center;
+                  font-size: .8rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: #8b949e; font-size: .9rem; }
+    .nav-links a:hover { color: #f0f6fc; text-decoration: none; }
+    .nav-cta { display: inline-flex; align-items: center; gap: .4rem;
+               padding: .55rem 1rem; border-radius: 999px;
+               background: #2dd4bf; color: #0d1117; font-size: .88rem; font-weight: 600; }
+    .nav-cta:hover { background: #5eead4; color: #0d1117; text-decoration: none; }
+
+    /* Hero */
+    .hero { padding: 4.5rem 0 3.5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: start; }
+    .badge { display: inline-flex; align-items: center; gap: .5rem;
+             padding: .35rem .8rem; border-radius: 999px;
+             border: 1px solid #21262d; background: #161b22;
+             font-size: .8rem; color: #8b949e; margin-bottom: 1.25rem; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #2dd4bf;
+                 box-shadow: 0 0 0 3px rgba(45,212,191,.2); }
+    h1 { font-size: clamp(2.6rem, 5vw, 4.4rem); letter-spacing: -.03em; font-weight: 800;
+         margin-bottom: 1rem; }
+    h1 span { background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+              -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+              background-clip: text; }
+    .lead { font-size: 1.02rem; color: #8b949e; max-width: 44rem; margin-bottom: 1.5rem; }
+    .lead strong { color: #c9d1d9; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: .65rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+           min-height: 42px; padding: .65rem 1.15rem; border-radius: .75rem;
+           border: 1px solid #30363d; background: #161b22; color: #c9d1d9;
+           font-size: .9rem; font-weight: 500; cursor: pointer;
+           transition: border-color .15s, background .15s; }
+    .btn:hover { border-color: #58a6ff; background: #1c2128; color: #c9d1d9; text-decoration: none; }
+    .btn-primary { background: #2dd4bf; border-color: #2dd4bf; color: #0d1117; }
+    .btn-primary:hover { background: #5eead4; border-color: #5eead4; color: #0d1117; }
+
+    /* Skill cards grid */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+    .skill-card { background: #161b22; border: 1px solid #21262d; border-radius: .75rem;
+                  padding: .8rem .9rem; transition: border-color .15s; }
+    .skill-card:hover { border-color: #2dd4bf33; }
+    .skill-cat { font-size: .7rem; color: #8b949e; margin-bottom: .3rem; letter-spacing: .08em; }
+    .skill-name { font-size: .95rem; font-weight: 600; color: #f0f6fc; margin-bottom: .2rem; }
+    .skill-level { font-size: .78rem; color: #2dd4bf; }
+
+    /* Section layout */
+    .section { padding: 2.75rem 0; border-top: 1px solid #21262d; }
+    .section-grid { display: grid; grid-template-columns: 155px 1fr; gap: 1.75rem; align-items: start; }
+    .label { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+             color: #6e7681; padding-top: .15rem; }
+
+    /* Career timeline */
+    .career { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
+    .exp-item { padding-left: 1rem; border-left: 2px solid #21262d;
+                transition: border-color .15s; }
+    .exp-item:hover { border-left-color: #3b82f6; }
+    .exp-role { font-size: 1rem; font-weight: 600; color: #f0f6fc; margin-bottom: .2rem; }
+    .exp-meta { font-size: .88rem; color: #3b82f6; margin-bottom: .45rem; }
+    .exp-desc { font-size: .9rem; color: #8b949e; }
+    .exp-group + .exp-group { margin-top: 1.25rem; }
+
+    /* Education card */
+    .edu-card { background: #161b22; border: 1px solid #21262d; border-radius: .95rem; padding: 1.25rem; }
+    .edu-item + .edu-item { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #21262d; }
+    .edu-degree { font-size: 1rem; font-weight: 600; color: #f0f6fc; margin-bottom: .2rem; }
+    .edu-school { font-size: .9rem; color: #8b8bf5; }
+    .edu-year { font-size: .8rem; color: #6e7681; margin-top: .2rem; }
+    .certs { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #21262d; }
+    .cert-label { font-size: .82rem; font-weight: 600; color: #c9d1d9; margin-bottom: .6rem; }
+    .cert-item { display: flex; align-items: center; gap: .5rem; font-size: .88rem; color: #8b949e; margin-bottom: .4rem; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .dot-green { background: #2dd4bf; }
+    .dot-yellow { background: #f0c040; }
+    .dot-blue { background: #3b82f6; }
+
+    /* Projects cards */
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
+    .card { background: #161b22; border: 1px solid #21262d; border-radius: .95rem;
+            padding: 1.05rem; display: flex; flex-direction: column;
+            transition: border-color .2s, box-shadow .2s; }
+    .card:hover { border-color: #2dd4bf55; box-shadow: 0 0 0 1px #2dd4bf22; }
+    .card-accent { background: #0d1f1e; }
+    .card-kicker { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+                   color: #6e7681; margin-bottom: .55rem; }
+    .card h3 { font-size: 1.08rem; font-weight: 600; margin-bottom: .5rem; color: #f0f6fc; }
+    .card p { font-size: .9rem; flex-grow: 1; margin-bottom: .85rem; }
+    .card a { font-size: .88rem; color: #2dd4bf; margin-top: auto; }
+
+    /* AI Interest */
+    .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; align-items: start; }
+    .info-card { background: #161b22; border: 1px solid #21262d; border-radius: .95rem; padding: 1.05rem 1.1rem; }
+    .info-card ul { margin: 0; }
+    h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); letter-spacing: -.025em; font-weight: 700; margin-bottom: .75rem; }
+    h3 { font-size: 1rem; color: #f0f6fc; }
+
+    /* Footer */
+    .footer { padding: 2rem 0 3.5rem; border-top: 1px solid #21262d;
+              color: #6e7681; font-size: .88rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; margin-top: .65rem; }
+    .footer-links a { color: #8b949e; font-size: .88rem; }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .nav-links,.nav-cta { display: none; }
+      .hero-grid, .section-grid, .career, .ai-grid { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="nav-brand" href="#top" style="text-decoration:none">
+        <div class="brand-mark">EC</div>
+        Emanuele Casali
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#career">Career</a>
+        <a href="#ai">AI &amp; Learning</a>
+        <a href="#links">Links</a>
+      </nav>
+      <a class="nav-cta" href="mailto:emanuele.casali@gmail.com">✉ Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="badge"><span class="badge-dot"></span> MBA · Engineering · AI</div>
+            <h1>Operational Leader.<br><span>Builder. Thinker.</span></h1>
+            <p class="lead">I bridge large-scale operations and applied AI — from directing <strong>3,000+ FTE robotics fulfilment centres</strong> at Amazon to building practical AI workflows for market research and executive decision-making.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="#projects">View Projects</a>
+              <a class="btn" href="https://github.com/ecasali" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="btn" href="https://www.linkedin.com/in/ecasali/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card"><div class="skill-cat">Operations</div><div class="skill-name">Large-Scale Ops</div><div class="skill-level">Expert</div></div>
+            <div class="skill-card"><div class="skill-cat">AI / ML</div><div class="skill-name">Machine Learning</div><div class="skill-level">In Progress</div></div>
+            <div class="skill-card"><div class="skill-cat">Code</div><div class="skill-name">Python</div><div class="skill-level">Intermediate</div></div>
+            <div class="skill-card"><div class="skill-cat">Data</div><div class="skill-name">SQL</div><div class="skill-level">Advanced</div></div>
+            <div class="skill-card"><div class="skill-cat">Automation</div><div class="skill-name">VBA &amp; Excel</div><div class="skill-level">Expert</div></div>
+            <div class="skill-card"><div class="skill-cat">Strategy</div><div class="skill-name">P&amp;L / GM</div><div class="skill-level">Expert</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap section-grid">
+        <div class="label">About</div>
+        <div>
+          <h2>Operator &amp; builder at the intersection of AI, operations, and execution.</h2>
+          <p style="margin-bottom:.75rem">My background spans co-founding a startup, launching greenfield robotics facilities, leading multi-country operations, and building AI-assisted decision tools. I am a GM and operator first — and a builder by nature.</p>
+          <p>This site is a compact home for my personal AI projects, ongoing learning journey, and career highlights.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="wrap section-grid">
+        <div class="label">Projects</div>
+        <div class="cards">
+          <div class="card card-accent">
+            <div class="card-kicker">Umbrella repository</div>
+            <h3>Pulsar</h3>
+            <p>Applied intelligence workflows for market research, decision support, and executive briefing. One coherent body of work, not disconnected notebooks.</p>
+            <a href="https://github.com/ecasali/pulsar" target="_blank" rel="noopener noreferrer">Open repository →</a>
+          </div>
+          <div class="card">
+            <div class="card-kicker">Market research</div>
+            <h3>WARREN</h3>
+            <p>AI-assisted equity research: structured data gathering, benchmark context, valuation framing, scenario analysis, and memo generation with confidence scoring.</p>
+            <a href="https://github.com/ecasali/pulsar" target="_blank" rel="noopener noreferrer">View in Pulsar →</a>
+          </div>
+          <div class="card">
+            <div class="card-kicker">Executive briefing</div>
+            <h3>CHARLIE</h3>
+            <p>Morning executive-intelligence workflow: compresses macro, geopolitical, and strategic developments into a concise daily briefing for fast review.</p>
+            <a href="https://github.com/ecasali/pulsar" target="_blank" rel="noopener noreferrer">View in Pulsar →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER -->
+    <section class="section" id="career">
+      <div class="wrap section-grid">
+        <div class="label">Career</div>
+        <div>
+          <div class="career">
+            <!-- LEFT: Experience -->
+            <div>
+              <h2 style="margin-bottom:1.25rem">Professional Background</h2>
+              <div class="exp-group">
+                <div class="exp-item">
+                  <div class="exp-role">General Manager</div>
+                  <div class="exp-meta">Amazon Italy (Turin, TRN1) · 2025 – Present</div>
+                  <div class="exp-desc">Managing Turin's major Fulfilment Centre (3,000+ FTE). Delivered 119% YoY productivity, 288k hours saved, exceeded financial targets by 7.5%. Scaled AI-readiness to 200+ front-line managers — ranked #1 in EU.</div>
+                </div>
+              </div>
+              <div class="exp-group">
+                <div class="exp-item">
+                  <div class="exp-role">Site Leader</div>
+                  <div class="exp-meta">Amazon Italy (Bergamo, BGY1) · 2024 – 2025</div>
+                  <div class="exp-desc">Directed cutting-edge robotics FC (2,000+ FTE). YoY productivity: 103.9% in 2024, 105.5% in Q1 2025. Established BGY1 as #1 EU performer vs benchmark and financial targets.</div>
+                </div>
+              </div>
+              <div class="exp-group">
+                <div class="exp-item">
+                  <div class="exp-role">Senior Operations Manager</div>
+                  <div class="exp-meta">Amazon Italy (BGY1) · 2021 – 2024</div>
+                  <div class="exp-desc">Led SVP/VP-Sponsored NA task force across 15 FCs. Delivered 88% late-shipment reduction, €4MM saved in support hours. Launched BGY1 from greenfield — #1 worldwide productivity ranking 2022 and 2023.</div>
+                </div>
+              </div>
+              <div class="exp-group">
+                <div class="exp-item">
+                  <div class="exp-role">Multiple Roles — Pathways Programme</div>
+                  <div class="exp-meta">Amazon UK (Manchester, Birmingham) · 2017 – 2021</div>
+                  <div class="exp-desc">Progressed from Area Manager to Senior Ops Manager across multiple sites. Ran COVID-19 UK operations, deployed 0.5MM test kits, set MAN1 weekly record (3.5MM units shipped).</div>
+                </div>
+              </div>
+              <div class="exp-group">
+                <div class="exp-item">
+                  <div class="exp-role">Technical Sales Manager — Co-Founder</div>
+                  <div class="exp-meta">T-TEC di Emanuele Casali · 2007 – 2011</div>
+                  <div class="exp-desc">Co-founded an automotive OEM supplier serving the Middle East. Built operations from scratch with 190k€ turnover.</div>
+                </div>
+              </div>
+              <div style="margin-top:1.25rem">
+                <a href="https://www.linkedin.com/in/ecasali/" target="_blank" rel="noopener noreferrer" style="font-size:.9rem;color:#3b82f6">View full CV on LinkedIn →</a>
+              </div>
+            </div>
+            <!-- RIGHT: Education -->
+            <div>
+              <h2 style="margin-bottom:1.25rem">Education</h2>
+              <div class="edu-card">
+                <div class="edu-item">
+                  <div class="edu-degree">MBA</div>
+                  <div class="edu-school">IESE Business School / UC Berkeley Haas</div>
+                  <div class="edu-year">2015 – 2017 · Barcelona &amp; Berkeley</div>
+                </div>
+                <div class="edu-item">
+                  <div class="edu-degree">Mechanical Engineering (110/110 Cum Laude)</div>
+                  <div class="edu-school">Università degli Studi di Perugia</div>
+                  <div class="edu-year">2004 – 2009 · Bachelor &amp; Master</div>
+                </div>
+                <div class="certs">
+                  <div class="cert-label">Certifications &amp; programmes</div>
+                  <div class="cert-item"><span class="dot dot-green"></span>AI for Business — The Wharton School (2025)</div>
+                  <div class="cert-item"><span class="dot dot-green"></span>Machine Learning Specialization — Stanford / DeepLearning.AI (2025)</div>
+                  <div class="cert-item"><span class="dot dot-green"></span>Deep Learning Specialization — DeepLearning.AI</div>
+                  <div class="cert-item"><span class="dot dot-blue"></span>Python Specialization — University of Michigan (2025)</div>
+                  <div class="cert-item"><span class="dot dot-yellow"></span>Oxford Executive Leadership Programme — Saïd Business School (2024)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI & LEARNING -->
+    <section class="section" id="ai">
+      <div class="wrap section-grid">
+        <div class="label">AI &amp; Learning</div>
+        <div class="ai-grid">
+          <div>
+            <h2>AI interest &amp; learning journey</h2>
+            <p style="margin-bottom:.75rem">A growing part of my work outside the office is understanding AI more deeply — developing enough technical depth to use it in a decision-oriented, practical way. Not academic study for its own sake, but applied fluency.</p>
+            <p>The projects in this repo are an expression of that: building real workflows, testing ideas, and learning by doing.</p>
+          </div>
+          <div>
+            <div class="info-card" style="margin-bottom:.75rem">
+              <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#6e7681;margin-bottom:.7rem">Courses &amp; Specializations</div>
+              <ul>
+                <li>Machine Learning Specialization — Stanford / DeepLearning.AI</li>
+                <li>Deep Learning Specialization — DeepLearning.AI</li>
+                <li>AI for Business — The Wharton School</li>
+                <li>Python for Everybody — University of Michigan</li>
+              </ul>
+            </div>
+            <div class="info-card">
+              <div style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#6e7681;margin-bottom:.7rem">Books</div>
+              <ul>
+                <li>Why Machines Learn</li>
+                <li>Nexus</li>
+                <li>Prediction Machines</li>
+                <li>The AI Driven Leader</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="section" id="links">
+      <div class="wrap section-grid">
+        <div class="label">Links</div>
+        <div>
+          <div class="footer-links">
+            <a href="https://github.com/ecasali" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://github.com/ecasali/pulsar" target="_blank" rel="noopener noreferrer">Pulsar</a>
+            <a href="https://www.linkedin.com/in/ecasali/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:emanuele.casali@gmail.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>© 2026 Emanuele Casali</div>
+      <div class="footer-links">
+        <a href="https://github.com/ecasali">github.com/ecasali</a>
+        <a href="https://www.linkedin.com/in/ecasali/">linkedin.com/in/ecasali</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
